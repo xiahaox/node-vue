@@ -11,14 +11,25 @@
             <el-menu-item index="1-1">
               <router-link :to="{path:'/categories/create'}">新建分类</router-link>
             </el-menu-item>
-            <el-menu-item index="1-2">分类列表</el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link :to="{path:'/categories/list'}">分类列表</router-link>
+            </el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">物品</template>
+            <el-menu-item index="1-1">
+              <router-link :to="{path:'/items/create'}">新建物品</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link :to="{path:'/items/list'}">物品列表</router-link>
+            </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>
 
     <el-container>
-      <!-- <el-header style="text-align: right; font-size: 12px">
+      <el-header style="text-align: right; font-size: 12px">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
@@ -28,7 +39,7 @@
           </el-dropdown-menu>
         </el-dropdown>
         <span>王小虎</span>
-      </el-header>-->
+      </el-header>
 
       <el-main>
         <router-view></router-view>

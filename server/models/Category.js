@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 var userModel = new mongoose.Schema({
     // id: Number,
     name: String,
-    // age: Number,
+    parent: { type: mongoose.SchemaTypes.ObjectId, ref: 'Category' },
     // sex: String
 })
 
