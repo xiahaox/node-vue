@@ -1,14 +1,20 @@
 <template>
   <div style="text-align: left">
-    <h3>物品列表</h3>
+    <h3>英雄列表</h3>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"></el-table-column>
-      <el-table-column prop="name" label="物品名称"></el-table-column>
-      <!-- <el-table-column prop="address" label="地址"></el-table-column> -->
+      <el-table-column prop="name" label="英雄名称"></el-table-column>
+      <el-table-column prop="title" label="称号"></el-table-column>
+
+      <el-table-column prop="icon" label="头像">
+        <template slot-scope="scope">
+          <img :src="scope.row.avatar" style="height:3rem" />
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
-            @click="$router.push(`/items/edit/${scope.row._id}`)"
+            @click="$router.push(`/heroes/edit/${scope.row._id}`)"
             type="text"
             size="small"
           >编辑</el-button>
@@ -27,8 +33,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get("/rest/items");
-      //   console.log(res);
+      const res = await this.$http.get("/rest/heroes");
       this.items = res.data;
     },
     async remove(row) {
@@ -37,7 +42,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(async () => {
-        await this.$http.delete(`/rest/items/${row._id}`);
+        await this.$http.delete(`/rest/heroes/${row._id}`);
         this.$message({
           type: "success",
           message: "删除成功!"

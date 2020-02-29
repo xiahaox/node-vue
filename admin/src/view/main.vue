@@ -24,6 +24,24 @@
               <router-link :to="{path:'/items/list'}">物品列表</router-link>
             </el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">英雄</template>
+            <el-menu-item index="1-1">
+              <router-link :to="{path:'/heroes/create'}">新建英雄</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link :to="{path:'/heroes/list'}">英雄列表</router-link>
+            </el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">文章</template>
+            <el-menu-item index="1-1">
+              <router-link :to="{path:'/articles/create'}">新建文章</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link :to="{path:'/articles/list'}">文章列表</router-link>
+            </el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>

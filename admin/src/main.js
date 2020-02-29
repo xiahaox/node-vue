@@ -15,6 +15,17 @@ Vue.use(VueRouter)
 
 Vue.prototype.$http = AxiosInstance
 
+// 复合使用
+Vue.mixin({
+  created() {
+  },
+  computed: {
+    uploadUrl() {
+      return this.$http.defaults.baseURL + 'upload'
+    }
+  },
+})
+
 new Vue({
   render: h => h(App),
   router

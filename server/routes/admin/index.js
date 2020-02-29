@@ -10,7 +10,7 @@ module.exports = (app) => {
         const model = await req.Model.create(req.body)
         res.send(model)
     })
-    //查询
+    //查询列表
     router.get('/', async (req, res) => {
         // await Category.findByIdAndRemove()
         const queryOptions = {}
@@ -18,6 +18,8 @@ module.exports = (app) => {
             queryOptions.populate = 'parent'
         }
         const items = await req.Model.find().setOptions(queryOptions).limit(10)
+        // console.log(items);
+
         res.send(items)
     })
     //编辑单条分类查询
