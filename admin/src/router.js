@@ -8,6 +8,8 @@ import heroList from './view/Hero/heroList.vue'
 import heroEdit from './view/Hero/heroEdit.vue'
 import ArticleEdit from './view/Article/articleEdit.vue'
 import ArticleList from './view/Article/articleList.vue'
+import AdsEdit from './view/Ads/edit.vue'
+import AdsList from './view/Ads/list.vue'
 
 const router = new VueRouter({
     routes: [
@@ -73,6 +75,21 @@ const router = new VueRouter({
             {
                 path: '/articles/edit/:id',
                 component: ArticleEdit,
+                props: true  // props 将组件和路由解耦
+            },
+
+            {
+                path: '/ads/create',
+                component: AdsEdit,
+            },
+            {
+                path: '/ads/list',
+                component: AdsList,
+                // name: 'categoryList',
+            },
+            {
+                path: '/ads/edit/:id',
+                component: AdsEdit,
                 props: true  // props 将组件和路由解耦
             },
             ]

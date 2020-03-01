@@ -42,6 +42,15 @@
               <router-link :to="{path:'/articles/list'}">文章列表</router-link>
             </el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">广告位</template>
+            <el-menu-item index="1-1">
+              <router-link :to="{path:'/ads/create'}">新建广告位</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link :to="{path:'/ads/list'}">广告位列表</router-link>
+            </el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>
