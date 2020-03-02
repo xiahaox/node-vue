@@ -13,6 +13,7 @@
       <el-form-item label="图标">
         <el-upload
           class="avatar-uploader"
+          :headers="setHeader"
           :action="$http.defaults.baseURL+`upload`"
           :show-file-list="false"
           :on-success="afterUpload"
@@ -45,7 +46,6 @@ export default {
   },
   methods: {
     afterUpload(res) {
-      console.log(res);
       this.formValue.icon = res.url;
     },
     async onSubmit() {

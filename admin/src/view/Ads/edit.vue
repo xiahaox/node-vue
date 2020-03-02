@@ -10,6 +10,7 @@
           <el-upload
             class="avatar-uploader carousel"
             :action="uploadUrl"
+            :headers="setHeader"
             :on-success="uploadSuccess"
             :show-file-list="false"
           >
