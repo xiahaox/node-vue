@@ -1,0 +1,72 @@
+<template>
+  <div>
+    <h1>管理员列表</h1>
+    <el-table :data="list" style="width: 100%">
+      <el-table-column prop="_id" label="ID"></el-table-column>
+      <el-table-column prop="username" label="管理员"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="100">
+        <template slot-scope="scope">
+          <el-button type="text" size="small" @click="edit(scope.row._id)">编辑</el-button>
+          <el-button type="text" size="small" @click="del(scope.row._id)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="total"
+      :pageSize="10"
+      :current-page.sync="currentPage"
+      @current-change="getAdmin"
+    ></el-pagination>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "adminList",
+  data() {
+    return {
+      //管理员列表
+      list: [],
+      // 总条数
+      total: 0,
+      // 当前页数
+      currentPage: 1
+    };
+  },
+  created() {
+    this.getAdmin();
+  },
+  methods: {
+    //获取管理员列表
+    getAdmin() {
+      let url = "rest/admin_users";
+      this.$http.get(url).then(res => {
+        // let { code, data, totalCount } = res.data;
+        // if (code === 1) {
+        this.list = res.data;
+        // this.total = totalCount;
+        // }
+      });
+    },
+    //编辑
+    edit(id) {
+      this.$router.push(`/admin_users/edit/${id}`);
+    },
+    //删除
+    del(id) {
+      this.$confirm("确认删除吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        let url = `rest/admin_users/${id}`;
+        this.$http.delete(url).then(() => {
+          this.getAdmin();
+        });
+      });
+    }
+  }
+};
+</script>

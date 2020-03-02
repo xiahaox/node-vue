@@ -10,9 +10,15 @@ import ArticleEdit from './view/Article/articleEdit.vue'
 import ArticleList from './view/Article/articleList.vue'
 import AdsEdit from './view/Ads/edit.vue'
 import AdsList from './view/Ads/list.vue'
-
+import UserEdit from './view/Admin_User/edit.vue'
+import UserList from './view/Admin_User/list.vue'
 const router = new VueRouter({
     routes: [
+        {
+            path: '/login',
+            name: 'login',
+            component: () => import('@/view/Login')
+        },
         {
             path: '/',
             name: 'main',
@@ -90,6 +96,21 @@ const router = new VueRouter({
             {
                 path: '/ads/edit/:id',
                 component: AdsEdit,
+                props: true  // props 将组件和路由解耦
+            },
+
+            {
+                path: '/admin_users/create',
+                component: UserEdit,
+            },
+            {
+                path: '/admin_users/list',
+                component: UserList,
+                // name: 'categoryList',
+            },
+            {
+                path: '/admin_users/edit/:id',
+                component: UserEdit,
                 props: true  // props 将组件和路由解耦
             },
             ]
