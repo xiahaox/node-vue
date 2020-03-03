@@ -1,0 +1,55 @@
+
+
+
+@import "../assets/utils/color.scss";
+@import "../assets/utils/font.scss";
+@import "../assets/utils/flex.scss";
+@import "../assets/utils/spacing.scss";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html{
+  font-size: 14px;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, 微软雅黑, sans-serif;
+  background: #f1f1f1;
+}
+
+a {
+  color: #999;
+  text-decoration: none;
+}
+
+//button
+.btn {
+  border: none;
+  font-size: map-get($font-sizes, "md");
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ws-nowrap {
+  white-space: nowrap;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  .nav-item {
+    border-bottom: 2px solid transparent;
+
+    &.active {
+      border-bottom-color: #db9e3f;
+      color: #db9e3f;
+    }
+  }
+}
