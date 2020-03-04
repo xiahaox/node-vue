@@ -5,6 +5,7 @@ export const router = new VueRouter({
     routes: [
         {
             path: '/',
+            redirect: '/home',
             name: 'main',
             meta: {
                 isPublic: true
@@ -18,6 +19,11 @@ export const router = new VueRouter({
                         isPublic: true
                     },
                     component: () => import('@/view/Home/index'),
+                },
+                {
+                    path: '/article/:id',
+                    name: 'article',
+                    component: () => import('@/view/Alticle'),
                 }
             ]
         },
@@ -28,6 +34,11 @@ export const router = new VueRouter({
                 isPublic: true
             },
             component: () => import('@/view/about'),
+        },
+        {
+            path: '/heroes/:id',
+            name: 'heroes',
+            component: () => import('@/view/Heroes'),
         }
     ]
 })

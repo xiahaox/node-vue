@@ -9,62 +9,61 @@
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-
     <!-- 新闻资讯模块 -->
-    <!-- <siteCard title="新闻资讯" :categories="newsList" allPath="/all-news">
+    <siteCard title="新闻资讯" :categories="newsList" allPath="/all-news">
       <template #items="{category}">
         <router-link
           tag="div"
           :to="`article/${item._id}`"
           v-for="(item, index) in category.newsList"
-          :key="index"
-          class="flex ai-center fs-d28 mb-d3"
+          v-bind:key="index"
+          class="flex ai-center fs-d1 mb-d3"
         >
           <span class="text-grey ws-nowrap">[{{item.categoryName}}]</span>
           <span>|</span>
           <span class="ws-nowrap overflow-ellipsis">{{item.title}}</span>
-          <span class="text-666 fs-d26">{{item.createdAt | convertDate}}</span>
+          <span class="text-666 posi_r fs-d1">{{item.createdAt | convertDate}}</span>
         </router-link>
       </template>
-    </siteCard>-->
+    </siteCard>
 
     <!-- 英雄列表模块 -->
-    <!-- <siteCard class="hero" title="英雄列表" :categories="heroList" allPath="/all-hero">
+    <siteCard class="hero" title="英雄列表" :categories="heroList" allPath="/all-hero">
       <template v-slot:header>
         <router-link :to="`/heroes/${newestHero._id}`">
           <div class="newestHero width-100p position-re pb-d3 mb-d24 height-2d3">
             <img :src="newestHero.banner" class="width-100p" />
-            <div class="position-ab fs-d22 position-l-5p position-t-20p text-white">
-              <p class="fs-d32 fw-bold">最新英雄：{{newestHero.name}}</p>
-              <p v-if="newestHero.categories" class="mb-d25">职业定位：{{newestHero.categories[0].name}}</p>
-              <p class="fw-bold">上线时间：{{newestHero.createdAt | convertDate}}</p>
-            </div>
           </div>
         </router-link>
       </template>
       <template #items="{category}">
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap herosBox">
           <router-link
             tag="div"
             :to="`/heroes/${hero._id}`"
             v-for="(hero, index) in category.heroList"
             :key="index"
-            class="width-1d16 height-1d74 mr-d25 flex fd-column"
+            class="herosBox_item"
           >
             <img :src="hero.avatar" class="width-98p" />
             <p class="flex jc-center fs-d24 mt-d1">{{hero.name}}</p>
           </router-link>
         </div>
       </template>
-    </siteCard>-->
+    </siteCard>
   </div>
 </template>
 <script>
+import Card from "../components/Card";
 export default {
-  name: "HelloWorld",
+  name: "Home",
   props: {
     msg: String
   },
+  components: {
+    siteCard: Card
+  },
+
   data() {
     return {
       // 新闻资讯列表
@@ -72,25 +71,12 @@ export default {
       // 英雄分类列表
       heroList: [],
       // 最新英雄
-      newestHero: {},
+      newestHero: {
+        banner:
+          "//ossweb-img.qq.com/upload/webplat/info/yxzj/20200108/20796372351730.jpg"
+      },
       // 轮播图列表
-      carouselList: [
-        {
-          id: "001",
-          imgUrl:
-            "http://img1.qunarzz.com/piao/fusion/1805/d4/d41d77b6ba8aca02.jpg_750x200_ac3d9a73.jpg"
-        },
-        {
-          id: "002",
-          imgUrl:
-            "http://img1.qunarzz.com/piao/fusion/1805/f1/e57bc93226317102.jpg_750x200_9ab37bd0.jpg"
-        },
-        {
-          id: "003",
-          imgUrl:
-            "http://img1.qunarzz.com/piao/fusion/1804/c4/1cdd28811593b802.jpg_750x200_5fbb7c91.jpg"
-        }
-      ],
+      carouselList: [],
       swiperOption: {
         pagination: {
           el: ".swiper-pagination"
@@ -98,6 +84,46 @@ export default {
         autoplay: true
       }
     };
+  },
+  mounted() {
+    this.getNewsList();
+    this.getHeroList();
+    this.getCarousel();
+    // this.getNewestHero();
+  },
+  methods: {
+    // 获取新闻资讯
+    getNewsList() {
+      this.$http.get("/news/home/list").then(res => {
+        this.newsList = res.data;
+        console.log(res.data);
+      });
+    },
+    // 获取轮播图
+    getCarousel() {
+      this.$http.get("home/carousel").then(res => {
+        this.carouselList = res.data;
+      });
+    },
+    // 获取最新英雄
+    getNewestHero() {
+      this.$http.get("/heroes/newest").then(res => {
+        this.newestHero = res.data;
+      });
+    },
+    // 获取英雄列表
+    getHeroList() {
+      this.$http.get("heroes/list").then(res => {
+        let { data } = res;
+        data.forEach((item, index) => {
+          if (item.name === "全部") {
+            data.splice(index, 1);
+            this.heroList = data;
+            return;
+          }
+        });
+      });
+    }
   }
 };
 </script>
@@ -126,6 +152,17 @@ export default {
       &.swiper-pagination-bullet-active {
         background: #4b67af;
       }
+    }
+  }
+}
+.width-100p {
+  width: 100%;
+}
+.herosBox {
+  .herosBox_item {
+    width: 20%;
+    img {
+      width: 92%;
     }
   }
 }

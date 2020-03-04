@@ -7,7 +7,7 @@ var userModel = new mongoose.Schema({
     title: String,
     categories: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }],
     body: { type: String },
-})
+}, { timestamps: true })
 
 //2.将表的数据结构与表关联起来  并 导出
 

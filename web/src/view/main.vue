@@ -12,18 +12,35 @@
         <a class="text-333 fw-bold" href="https://pvp.qq.com/zlkdatasys/mct/d/play.shtml">立即下载</a>
       </button>
     </div>
-    <!-- <div class="bg-primary height-d84">
-      <div>
-
-      </div>
-    </div>-->
+    <div>
+      <el-menu
+        background-color="#db9e3f"
+        :default-active="activeIndex"
+        text-color="#fff"
+        class="el-menu-demo aa"
+        mode="horizontal"
+      >
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-menu-item index="2">处理中心</el-menu-item>
+        <el-menu-item index="3">处理中心</el-menu-item>
+      </el-menu>
+      <div class="line"></div>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 <script>
+import { Menu, MenuItem } from "element-ui";
+
 export default {
+  components: {
+    elMenu: Menu,
+    elMenuItem: MenuItem
+  },
   data() {
-    return {};
+    return {
+      activeIndex: "1"
+    };
   }
 };
 </script>
@@ -35,5 +52,11 @@ export default {
 }
 .ml-d3 {
   height: 3.5rem;
+}
+.aa {
+  display: flex;
+  .el-menu-item {
+    flex: 1;
+  }
 }
 </style>

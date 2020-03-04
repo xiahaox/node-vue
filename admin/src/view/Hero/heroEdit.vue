@@ -11,6 +11,18 @@
           <el-form-item label="称号">
             <el-input v-model="formValue.title"></el-input>
           </el-form-item>
+          <el-form-item label="背景图">
+            <el-upload
+              class="avatar-uploader banner"
+              :headers="setHeader"
+              :action="$http.defaults.baseURL+`upload`"
+              :on-success="res => $set(formValue, 'banner', res.url)"
+              :show-file-list="false"
+            >
+              <img width="100%" v-if="formValue.banner" :src="formValue.banner" class="icon" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
           <el-form-item label="难度">
             <el-rate
               style="margin-top: 0.6rem"

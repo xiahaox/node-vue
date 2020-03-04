@@ -46,10 +46,18 @@ a {
   display: flex;
   .nav-item {
     border-bottom: 2px solid transparent;
-
+    margin: 0 11px;
     &.active {
       border-bottom-color: #db9e3f;
       color: #db9e3f;
     }
   }
+}
+
+.posi_r{
+      position: absolute;
+    right: 0;
+}
+.card-header{
+      padding: 0.6rem 0;
 }

@@ -6,6 +6,8 @@ var userModel = new mongoose.Schema({
     // id: Number,
     name: String,
     avatar: String,
+    // 背景图
+    banner: { type: String },
     title: String,
     //英雄分类 (单个英雄可能属于多个分类，所以这里使用数组方式)
     categories: [
@@ -97,4 +99,4 @@ var userModel = new mongoose.Schema({
 
 //2.将表的数据结构与表关联起来  并 导出
 
-module.exports = mongoose.model('Hero', userModel)
+module.exports = mongoose.model('Hero', userModel, 'heroes')
