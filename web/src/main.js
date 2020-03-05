@@ -20,7 +20,8 @@ Vue.use(VueRouter)
 Vue.filter('convertDate', convertDate)
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/web/api/'
+  baseURL: process.env.NODE_ENV == 'production' ? '/web/api/' : 'http://localhost:3000/web/api/',
+
 });
 
 Vue.prototype.$http = instance

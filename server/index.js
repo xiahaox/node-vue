@@ -6,7 +6,10 @@ const app = express();
 app.set('secret', 'ssdasdad')
 app.use(express.json())
 app.use(require('cors')())
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname + '/uploads')) //托管到虚拟的静态目录
+app.use('/admin', express.static(__dirname + '/public/admin'))
+app.use('/', express.static(__dirname + '/public/web'))
+
 require('./routes/admin')(app)
 require('./routes/web')(app)
 

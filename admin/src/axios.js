@@ -2,8 +2,9 @@ import axios from 'axios'
 import Vue from 'vue'
 import router from './router'
 export const AxiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/admin/api/',
+    baseURL: process.env.NODE_ENV == 'production' ? '/admin/api/' : 'http://localhost:3000/admin/api/',
 });
+console.log(process.env);
 
 // 拦截器
 
